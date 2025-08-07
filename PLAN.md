@@ -21,19 +21,26 @@ bundler -v
 rails new . --skip-javascript
 ```
 
-## 3. Add `react_on_rails`
-
-```ruby
-# Gemfile
-
-gem "react_on_rails"  # latest stable
-```
+## 3. Add Shakapacker and React on Rails gems
 
 ```bash
-bundle install
+bundle add react_on_rails --strict
+bundle add shakapacker --strict
 ```
 
-## 4. Install Webpack + React on Rails boilerplate
+## 4. Install Shakapacker
+
+```bash
+bundle exec rails shakapacker:install
+```
+
+Commit the changes to avoid errors:
+
+```bash
+git commit -am "Add Shakapacker and react_on_rails gems"
+```
+
+## 5. Install React on Rails boilerplate
 
 ```bash
 bundle exec rails generate react_on_rails:install
@@ -43,13 +50,20 @@ bundle exec rails generate react_on_rails:install
 # • Install npm packages (React 18 etc.)
 ```
 
-If the generator doesn’t auto-install JS packages:
+If the generator doesn't auto-install JS packages:
 
 ```bash
 npm install
 ```
 
-## 5. Generate a controller & route
+## 6. Set environment variable for Node.js runtime
+
+```bash
+# Add to .env file or export in shell
+export EXECJS_RUNTIME=Node
+```
+
+## 7. Generate a controller & route
 
 ```bash
 rails generate controller Home index
@@ -60,7 +74,7 @@ rails generate controller Home index
 root "home#index"
 ```
 
-## 6. Create React components
+## 8. Create React components
 
 Directory structure after this step:
 
@@ -95,7 +109,7 @@ export default function Counter() {
 }
 ```
 
-## 7. Wire it into the Rails view
+## 9. Wire it into the Rails view
 
 `app/views/home/index.html.erb`:
 
@@ -103,7 +117,7 @@ export default function Counter() {
 <%= react_component("Greeting", {}, prerender: true) %>
 ```
 
-## 8. Enable streaming SSR (optional but recommended)
+## 10. Enable streaming SSR (optional but recommended)
 
 `config/initializers/react_on_rails.rb` – ensure:
 
@@ -115,15 +129,18 @@ ReactOnRails.configure do |config|
 end
 ```
 
-## 9. Run it 🎉
+## 11. Run it with HMR 🎉
 
 ```bash
-npm run build    # or bin/webpack if using Webpacker
-rails server
+# Terminal 1: Start webpack dev server with hot module reloading
+./bin/shakapacker-dev-server
+
+# Terminal 2: Start Rails server
+./bin/dev
 # Visit http://localhost:3000 – HTML arrives fully rendered; the button hydrates.
 ```
 
-## 10. Next steps (after demo works)
+## 12. Next steps (after demo works)
 
 1. Add CRUD models to showcase Rails-side data.
 2. Experiment with selective hydration.
