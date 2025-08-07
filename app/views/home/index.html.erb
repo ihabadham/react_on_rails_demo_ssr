@@ -1,4 +1,4 @@
-<h1>React on Rails Demo - Server Components</h1>
-<p>This demonstrates React Server Components with server-side rendering and client-side hydration.</p>
+<h1>React on Rails Demo - SSR</h1>
+<p>This demonstrates classic React server-side rendering with client-side hydration.</p>
 
-<%= react_component("Greeting", props: {}, prerender: true) %>
+<%= react_component("Dashboard", props: @dashboard_props, prerender: true) %>
