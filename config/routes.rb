@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   get "home/index"
   get "hello_world", to: "hello_world#index"
   root "home#index"
+
+  # API endpoints for SSR data
+  namespace :api do
+    get "posts", to: "api#posts"
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

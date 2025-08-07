@@ -3,6 +3,13 @@
 # See https://github.com/shakacode/react_on_rails/blob/master/docs/guides/configuration.md
 # for many more options.
 
+module RenderingExtension
+  # Return a Hash merged into rails_context for each render
+  def self.custom_context(_view_context)
+    {}
+  end
+end
+
 ReactOnRails.configure do |config|
   # This configures the script to run to build the production assets by webpack. Set this to nil
   # if you don't want react_on_rails building this file for you.
@@ -42,8 +49,8 @@ ReactOnRails.configure do |config|
   # React components.
   #
   config.server_bundle_js_file = "server-bundle.js"
-  config.rendering_extension = :jsx # default is :js
-  config.streaming_on = true # enables renderToPipeableStream
+  # Provide a valid module; avoid setting a Symbol here
+  config.rendering_extension = RenderingExtension
 
   ################################################################################
   ################################################################################
