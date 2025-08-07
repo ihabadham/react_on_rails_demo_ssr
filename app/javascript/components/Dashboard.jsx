@@ -85,33 +85,6 @@ export default function Dashboard({
         </p>
         <TodoList initialTodos={initialTodos} />
       </div>
-
-      {/* SSR Benefits Explanation */}
-      <div
-        style={{
-          backgroundColor: "#f8f9fa",
-          padding: "1rem",
-          borderRadius: "8px",
-        }}
-      >
-        <h3>💡 SSR Benefits Demonstrated</h3>
-        <ul>
-          <li>
-            <strong>Fast Initial Load:</strong> Server renders HTML immediately
-          </li>
-          <li>
-            <strong>SEO Friendly:</strong> Search engines see complete content
-          </li>
-          <li>
-            <strong>Progressive Enhancement:</strong> Works without JavaScript,
-            then enhances
-          </li>
-          <li>
-            <strong>Interactive:</strong> Client-side components handle user
-            interactions
-          </li>
-        </ul>
-      </div>
     </div>
   );
 }
