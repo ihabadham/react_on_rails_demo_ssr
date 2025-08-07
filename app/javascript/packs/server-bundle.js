@@ -12,13 +12,5 @@ import Posts from "../components/Posts";
 
 // This is how react_on_rails can see the components in the browser.
 ReactOnRails.register({
-  HelloWorld,
-  Greeting,
-  Counter,
-  Clock,
-  UserGreeting,
-  TodoList,
-  ThemeToggle,
   Dashboard,
-  Posts,
 });
