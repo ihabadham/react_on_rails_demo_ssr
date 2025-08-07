@@ -42,6 +42,8 @@ ReactOnRails.configure do |config|
   # React components.
   #
   config.server_bundle_js_file = "server-bundle.js"
+  config.rendering_extension = :jsx # default is :js
+  config.streaming_on = true # enables renderToPipeableStream
 
   ################################################################################
   ################################################################################
