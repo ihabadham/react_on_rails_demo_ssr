@@ -16,6 +16,7 @@ RUN apt-get update -qq && \
     curl \
     ca-certificates \
     gnupg \
+    dos2unix \
     libyaml-dev \
     pkg-config \
     sqlite3 \

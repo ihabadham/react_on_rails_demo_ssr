@@ -6,7 +6,11 @@ services:
       args:
         RUBY_VERSION: 3.3.5
     image: react_on_rails_demo_rsc-dev
-    command: bash -lc "sed -i 's/\r$//' bin/* && ruby bin/rails s -b 0.0.0.0 -p 3000"
+    command: >-
+      bash -lc "\
+      find bin -type f -print0 | xargs -0 dos2unix -q || true && \
+      chmod +x bin/* && \
+      ruby bin/rails s -b 0.0.0.0 -p 3000"
     env_file: []
     environment:
       - RAILS_ENV=development
@@ -35,7 +39,11 @@ services:
       args:
         RUBY_VERSION: 3.3.5
     image: react_on_rails_demo_rsc-dev
-    command: bash -lc "sed -i 's/\r$//' bin/* && ruby bin/shakapacker-dev-server"
+    command: >-
+      bash -lc "\
+      find bin -type f -print0 | xargs -0 dos2unix -q || true && \
+      chmod +x bin/* && \
+      ruby bin/shakapacker-dev-server"
     environment:
       - RAILS_ENV=development
       - NODE_ENV=development
@@ -57,7 +65,11 @@ services:
       args:
         RUBY_VERSION: 3.3.5
     image: react_on_rails_demo_rsc-dev
-    command: bash -lc "sed -i 's/\r$//' bin/* && SERVER_BUNDLE_ONLY=yes ruby bin/shakapacker --watch"
+    command: >-
+      bash -lc "\
+      find bin -type f -print0 | xargs -0 dos2unix -q || true && \
+      chmod +x bin/* && \
+      SERVER_BUNDLE_ONLY=yes ruby bin/shakapacker --watch"
     environment:
       - RAILS_ENV=development
       - NODE_ENV=development
